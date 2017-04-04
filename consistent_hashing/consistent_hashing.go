@@ -56,8 +56,14 @@ func (table *ConsistentHashingTable) AddNode() {
 	
 }
 
-func (table *ConsistentHashingTable) DeleteNode() {
-	
+
+func (table *ConsistentHashingTable) DeleteNode(pos int) {
+	if (pos >= len(table.hashRing) - 1) {
+		return
+	}
+	tempHashRing := table.hashRing[:pos]
+
+	table.hashRing = append(tempHashRing, table.hashRing[pos+1:]...)	
 }
 
 // Helper
